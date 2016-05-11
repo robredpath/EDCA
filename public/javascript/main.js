@@ -29,7 +29,7 @@ $('#crear').click(function(){
               ($('#ocid').val()==""?
                "?":"?, perdera los cambios hechos al proceso actual")) == true ){
                  if(process.publisher != ""){
-                   $.get("/nuevo_proceso/" + process.pulisher, function(data){
+                   $.get("/nuevo_proceso/" + process.publisher, function(data){
                      $("#ocid").val(data.id);
                      currentocid = value.id;
                    });
@@ -45,7 +45,7 @@ $('#crear-org').click(function(){
               (process.ocid==0?
                "?":"?, perdera los cambios hechos al proceso actual")) == true ){
                  if(process.publisher != 0){
-                   $.get("/nuevo_proceso/" + process.pulisher, function(data){
+                   $.get("/nuevo_proceso/" + process.publisher, function(data){
                      $("#ocid").val(data.id);
                      currentocid = value.id;
                    });

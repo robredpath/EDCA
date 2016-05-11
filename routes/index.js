@@ -62,7 +62,7 @@ var isValidPassword = function(user, password){
 };
 
 // No usamos este código
-/* passport.use('signup', new LocalStrategy({
+passport.use('signup', new LocalStrategy({
         passReqToCallback : true // allows us to pass back the entire request to the callback
       },
       function(req, username, password, done) {
@@ -113,7 +113,7 @@ var isValidPassword = function(user, password){
 var createHash = function(password){
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
-*/
+
 
 
 // Passport needs to be able to serialize and deserialize users to support persistent login sessions
@@ -175,6 +175,18 @@ router.get('/signout', function(req, res) {
 router.get('/main', isAuthenticated, function(req, res, next) {
   res.render('main', { user: req.user, title: 'Contrataciones abiertas' });
 });
+
+  /* GET Registration Page */
+  router.get('/signup', function(req, res){
+    res.render('register',{message: req.flash('message')});
+  });
+
+  /* Handle Registration POST */
+  router.post('/signup', passport.authenticate('signup', {
+    successRedirect: '/home',
+    failureRedirect: '/signup',
+    failureFlash : true
+  }));
 
 
 /* GET main page with data */
